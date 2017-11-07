@@ -16,19 +16,13 @@ using System.Windows.Shapes;
 namespace Poker.Client
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ConnectionPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ConnectionPage : Page
     {
-        private GameClient client;
-        private ConnectionPage connectionPage;
-
-        public MainWindow()
+        public ConnectionPage()
         {
             InitializeComponent();
-            connectionPage = new ConnectionPage();
-            frame.Content = connectionPage;
-            //client = new GameClient("localhost", 1018, 2048);
         }
     }
 }
