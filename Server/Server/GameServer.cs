@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server.Server
+namespace Poker.Server
 {
     class GameServer : NetServer<GameClient>
     {
