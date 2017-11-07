@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Poker.Client.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ether.Network">
       <HintPath>..\packages\Ether.Network.2.0.1\lib\net45\Ether.Network.dll</HintPath>

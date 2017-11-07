@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.IO;
-using Core.Protocol;
+using Poker.Core.IO;
+using Poker.Core.Protocol;
 using Ether.Network;
 using Ether.Network.Packets;
 

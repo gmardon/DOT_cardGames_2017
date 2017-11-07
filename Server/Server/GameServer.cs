@@ -26,8 +26,6 @@ namespace Poker.Server
         protected override void OnClientConnected(GameClient connection)
         {
             Console.WriteLine("New client connected!");
-
-            connection.SendFirstPacket();
         }
 
         protected override void OnClientDisconnected(GameClient connection)
