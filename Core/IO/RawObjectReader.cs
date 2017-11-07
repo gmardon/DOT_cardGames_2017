@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.IO
+namespace Poker.Core.IO
 {
     public class RawObjectReader
     {

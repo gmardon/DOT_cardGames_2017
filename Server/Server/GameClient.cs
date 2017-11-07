@@ -22,7 +22,7 @@ namespace Poker.Server
                 this.Send(packet);
             }
         }
-
+        
         public override void HandleMessage(NetPacketBase packet)
         {
             int id = packet.Read<int>();
@@ -35,7 +35,7 @@ namespace Poker.Server
                     break;
 
                 default:
-                    throw new Exception("Message {0} is not implemented", id);
+                    throw new Exception("Message " + id + " is not implemented");
             }
             Console.WriteLine("Received '{1}' from {0}", this.Id, content);
         }

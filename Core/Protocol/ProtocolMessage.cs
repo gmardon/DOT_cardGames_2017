@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ether.Network.Packets;
 
-namespace Core.Protocol
+namespace Poker.Core.Protocol
 {
     [DataContract]
     public abstract class ProtocolMessage
