@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using TexasHoldem.Logic.Extensions;
+    using Poker.Core.Extensions;
 
     public class Deck : IDeck
     {

@@ -27,8 +27,12 @@ namespace Poker.Client
         {
             InitializeComponent();
             connectionPage = new ConnectionPage();
+            connectionPage.setConnectionCallback((host, port, username) =>
+            {
+                client = new GameClient(host, port, username, 2048);
+                client.Connect();
+            });
             frame.Content = connectionPage;
-            //client = new GameClient("localhost", 1018, 2048);
         }
     }
 }

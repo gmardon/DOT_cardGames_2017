@@ -20,9 +20,23 @@ namespace Poker.Client
     /// </summary>
     public partial class ConnectionPage : Page
     {
+        public delegate void onConnection(string host, int port, string username);
+
+        private onConnection callback = null;
+
         public ConnectionPage()
         {
             InitializeComponent();
+        }
+
+        public void setConnectionCallback(onConnection callback)
+        {
+            this.callback = callback;
+        }
+
+        private void ConnectionButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            callback?.Invoke(this.host.Text, int.Parse(this.port.Text), this.username.Text);
         }
     }
 }

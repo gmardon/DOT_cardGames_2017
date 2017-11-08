@@ -1,6 +1,6 @@
-﻿using TexasHoldem.Logic.Cards;
+﻿using Poker.Core.Cards;
 
-namespace TexasHoldem.Logic.Players
+namespace Poker.Core.Players
 {
     public interface IStartHandContext
     {

@@ -10,7 +10,7 @@ namespace Poker.Client
 {
     class GameClient : NetClient
     {
-        public GameClient(string host, int port, int bufferSize) : base(host, port, bufferSize)
+        public GameClient(string host, int port, string username, int bufferSize) : base(host, port, bufferSize)
         {
         }
 

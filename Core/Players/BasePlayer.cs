@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    using TexasHoldem.Logic.Cards;
+    using Poker.Core.Cards;
 
     public abstract class BasePlayer : IPlayer
     {

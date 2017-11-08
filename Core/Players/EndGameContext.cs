@@ -1,4 +1,4 @@
-﻿namespace TexasHoldem.Logic.Players
+﻿namespace Poker.Core.Players
 {
     public class EndGameContext : IEndGameContext
     {
