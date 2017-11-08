@@ -1,0 +1,12 @@
+﻿namespace Poker.Core
+{
+    using System;
+
+    public class InternalGameException : Exception
+    {
+        public InternalGameException(string message)
+            : base(message)
+        {
+        }
+    }
+}
