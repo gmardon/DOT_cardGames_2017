@@ -33,7 +33,7 @@ namespace Poker.Client
             {
                 connectionPage.messageBox.Text = "";
 
-                if (username.Length == 0 || host.Length == 0)
+                if (username.Length == 0 || host.Length == 0 || port == 0)
                 {
                     if (username.Length == 0)
                         connectionPage.messageBox.Text = "Please provide a username\n";
