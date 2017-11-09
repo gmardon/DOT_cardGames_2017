@@ -9,6 +9,6 @@
       Title="GamePage">
 
     <Grid>
-        
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="300" Stroke="Black" VerticalAlignment="Top" Width="300"/>
     </Grid>
 </Page>

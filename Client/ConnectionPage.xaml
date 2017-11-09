@@ -24,6 +24,6 @@
         <TextBox Name="port" Text="4268" Grid.Column="1" Grid.Row="1" Margin="3" />
         <TextBox Name="username" Grid.Column="1" Grid.Row="2" Margin="3" />
         <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" MinWidth="80" Margin="3" Content="Connect" Click="ConnectionButton_OnClick" />
-
+        <TextBlock Name="messageBox" Grid.Row="3" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="0.848,28,2.152,-100" VerticalAlignment="Center" />
     </Grid>
 </Page>

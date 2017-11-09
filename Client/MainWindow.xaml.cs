@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace Poker.Client
     {
         private GameClient client;
         private ConnectionPage connectionPage;
+        private GamePage gamePage;
 
         public MainWindow()
         {
@@ -29,8 +31,24 @@ namespace Poker.Client
             connectionPage = new ConnectionPage();
             connectionPage.setConnectionCallback((host, port, username) =>
             {
+                connectionPage.messageBox.Text = "";
+
+                if (username.Length == 0 || host.Length == 0)
+                {
+                    if (username.Length == 0)
+                        connectionPage.messageBox.Text = "Please provide a username\n";
+                    if (host.Length == 0)
+                        connectionPage.messageBox.Text += "Please provide a host\n";
+                    if (port == 0)
+                        connectionPage.messageBox.Text += "Please provide a port\n";
+                    return;
+                }
+
                 client = new GameClient(host, port, username, 2048);
                 client.Connect();
+                if (client.IsConnected)
+                    frame.Content = gamePage = new GamePage();
+                
             });
             frame.Content = connectionPage;
         }

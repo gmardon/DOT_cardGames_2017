@@ -36,7 +36,7 @@ namespace Poker.Client
 
         private void ConnectionButton_OnClick(object sender, RoutedEventArgs e)
         {
-            callback?.Invoke(this.host.Text, int.Parse(this.port.Text), this.username.Text);
+            callback?.Invoke(this.host.Text, this.port.Text.Length == 0 ? 0 : int.Parse(this.port.Text), this.username.Text);
         }
     }
 }

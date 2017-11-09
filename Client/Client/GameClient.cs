@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ether.Network;
 using Ether.Network.Packets;
+using Poker.Core.Cards;
 
 namespace Poker.Client
 {
     class GameClient : NetClient
     {
+        string username;
+        List<string> players;
+        Card firstCard;
+        
+
         public GameClient(string host, int port, string username, int bufferSize) : base(host, port, bufferSize)
         {
+            this.username = username;
         }
 
         protected override void HandleMessage(NetPacketBase packet)
