@@ -9,12 +9,14 @@ namespace Poker.Client
     class GameClient : NetClient
     {
         string username;
-        List<string> players;
-        Card firstCard;
-        
+        List<string> players { get; }
+        int money { set; get; }
+        Card firstCard { set;  get; }
+        Card secondCard { set; get; }
 
         public GameClient(string host, int port, string username, int bufferSize) : base(host, port, bufferSize)
         {
+            players = new List<string>();
             this.username = username;
         }
 
@@ -35,5 +37,17 @@ namespace Poker.Client
         {
             Console.WriteLine("Disconnected");
         }
+
+        private void addPlayer(string name)
+        {
+            players.Add(name);
+        }
+
+        private void setCards(Card firstCard, Card secondCard)
+        {
+            this.firstCard = firstCard;
+            this.secondCard = secondCard;
+        }
+
     }
 }
