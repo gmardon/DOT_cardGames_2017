@@ -12,5 +12,10 @@ namespace Poker.Core.Protocol
         [DataMember] public new const int ID = 3;
 
         [DataMember] private string action { get; }
+
+        public PlayerActionMessage(string action)
+        {
+            this.action = action;
+        }
     }
 }
