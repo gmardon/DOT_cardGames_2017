@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Poker.Server
 {
@@ -10,8 +9,8 @@ namespace Poker.Server
     {
         static void Main(string[] args)
         {
-            using (var server = new GameServer())
-                server.Start();
+            var server = new GameServer();
+            server.Start();
         }
     }
 }
