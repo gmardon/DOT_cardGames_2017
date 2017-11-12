@@ -1,10 +1,9 @@
-﻿namespace Poker.Core.GameMechanics
+﻿using System.Collections.Generic;
+using Poker.Core.Cards;
+using Poker.Core.Players;
+
+namespace Poker.Core.GameMechanics
 {
-    using System.Collections.Generic;
-
-    using Poker.Core.Cards;
-    using Poker.Core.Players;
-
     internal class InternalPlayer : PlayerDecorator
     {
         public InternalPlayer(IPlayer player)

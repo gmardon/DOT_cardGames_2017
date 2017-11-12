@@ -1,10 +1,9 @@
-﻿namespace Poker.Core.Helpers
+﻿using System.Collections.Generic;
+using System.Linq;
+using Poker.Core.Cards;
+
+namespace Poker.Core.Helpers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Poker.Core.Cards;
-
     // For performance considerations this class is not implemented using Chain of Responsibility
     public class HandEvaluator : IHandEvaluator
     {

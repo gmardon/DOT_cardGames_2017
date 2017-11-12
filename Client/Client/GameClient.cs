@@ -14,6 +14,10 @@ namespace Poker.Client
         Card firstCard { set;  get; }
         Card secondCard { set; get; }
 
+        public delegate void onConnected();
+
+        private onConnected onConnectedCallback = null;
+
         public GameClient(string host, int port, string username, int bufferSize) : base(host, port, bufferSize)
         {
             players = new List<string>();
@@ -30,6 +34,7 @@ namespace Poker.Client
 
         protected override void OnConnected()
         {
+            onConnectedCallback?.Invoke();
             Console.WriteLine("Connected to {0}", this.Socket.RemoteEndPoint.ToString());
         }
 
@@ -48,6 +53,10 @@ namespace Poker.Client
             this.firstCard = firstCard;
             this.secondCard = secondCard;
         }
-
+    
+        public void setOnConnectedCallback(onConnected callback)
+        {
+            this.onConnectedCallback = callback;
+        }
     }
 }

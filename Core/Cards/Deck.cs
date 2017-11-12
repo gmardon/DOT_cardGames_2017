@@ -1,10 +1,9 @@
-﻿namespace Poker.Core.Cards
+﻿using System.Collections.Generic;
+using System.Linq;
+using Poker.Core.Extensions;
+
+namespace Poker.Core.Cards
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Poker.Core.Extensions;
-
     public class Deck : IDeck
     {
         public static readonly IReadOnlyList<Card> AllCards;

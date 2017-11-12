@@ -1,9 +1,8 @@
-﻿namespace Poker.Core.Players
+﻿using System.Collections.Generic;
+using Poker.Core.Cards;
+
+namespace Poker.Core.Players
 {
-    using System.Collections.Generic;
-
-    using Poker.Core.Cards;
-
     public class StartRoundContext : IStartRoundContext
     {
         public StartRoundContext(GameRoundType roundType, IReadOnlyCollection<Card> communityCards, int moneyLeft, int currentPot)

@@ -1,9 +1,8 @@
-﻿namespace Poker.Core.Players
+﻿using System.Collections.Generic;
+using Poker.Core.Cards;
+
+namespace Poker.Core.Players
 {
-    using System.Collections.Generic;
-
-    using Poker.Core.Cards;
-
     public abstract class BasePlayer : IPlayer
     {
         public abstract string Name { get; }

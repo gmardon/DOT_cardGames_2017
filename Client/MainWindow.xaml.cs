@@ -45,10 +45,15 @@ namespace Poker.Client
                 }
 
                 client = new GameClient(host, port, username, 2048);
+                gamePage = new GamePage();
+                client.setOnConnectedCallback(() =>
+                {
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        frame.Content = gamePage;
+                    });
+                });
                 client.Connect();
-                if (client.IsConnected)
-                    frame.Content = gamePage = new GamePage();
-                
             });
             frame.Content = connectionPage;
         }

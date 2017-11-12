@@ -1,10 +1,9 @@
-﻿namespace Poker.Core.GameMechanics
+﻿using System.Collections.Generic;
+using System.Linq;
+using Poker.Core.Players;
+
+namespace Poker.Core.GameMechanics
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Poker.Core.Players;
-
     internal class TwoPlayersBettingLogic
     {
         private readonly IList<InternalPlayer> allPlayers;

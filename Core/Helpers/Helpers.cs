@@ -1,9 +1,8 @@
-﻿namespace Poker.Core.Helpers
+﻿using System.Collections.Generic;
+using Poker.Core.Cards;
+
+namespace Poker.Core.Helpers
 {
-    using System.Collections.Generic;
-
-    using Poker.Core.Cards;
-
     /// <summary>
     /// Class containing helper methods for evaluating and comparing player's hands.
     /// </summary>

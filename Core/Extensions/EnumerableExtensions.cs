@@ -1,12 +1,11 @@
-﻿namespace Poker.Core.Extensions
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Poker.Core.Cards;
+
+namespace Poker.Core.Extensions
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
-    using Poker.Core.Cards;
-
     public static class EnumerableExtensions
     {
         /// <summary>

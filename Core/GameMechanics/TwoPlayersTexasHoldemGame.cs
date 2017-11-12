@@ -1,11 +1,10 @@
-﻿namespace Poker.Core.GameMechanics
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Poker.Core.Players;
+
+namespace Poker.Core.GameMechanics
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Poker.Core.Players;
-
     public class TwoPlayersTexasHoldemGame : ITexasHoldemGame
     {
         private static readonly int[] SmallBlinds =

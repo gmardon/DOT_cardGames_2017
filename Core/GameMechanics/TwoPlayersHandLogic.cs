@@ -1,12 +1,10 @@
-﻿namespace Poker.Core.GameMechanics
+﻿using System.Collections.Generic;
+using System.Linq;
+using Poker.Core.Cards;
+using Poker.Core.Players;
+
+namespace Poker.Core.GameMechanics
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Poker.Core.Cards;
-    using Poker.Core.Helpers;
-    using Poker.Core.Players;
-
     internal class TwoPlayersHandLogic : IHandLogic
     {
         private readonly int handNumber;
@@ -96,7 +94,7 @@
                     }
                 }
 
-                var betterHand = Helpers.CompareCards(
+                var betterHand = Helpers.Helpers.CompareCards(
                     this.players[0].Cards.Concat(this.communityCards),
                     this.players[1].Cards.Concat(this.communityCards));
                 if (betterHand > 0)

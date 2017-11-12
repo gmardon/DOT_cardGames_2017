@@ -1,7 +1,5 @@
 ﻿namespace Poker.Core.Players
 {
-    using System;
-
     public class PlayerAction
     {
         private static readonly PlayerAction FoldObject = new PlayerAction(PlayerActionType.Fold);

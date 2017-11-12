@@ -1,8 +1,8 @@
-﻿namespace Poker.Core.Extensions
-{
-    using System;
-    using System.Threading;
+﻿using System;
+using System.Threading;
 
+namespace Poker.Core.Extensions
+{
     /// <summary>
     /// Static class representing a single instance of the Random class
     /// </summary>

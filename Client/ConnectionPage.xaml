@@ -20,7 +20,7 @@
         <Label Grid.Row="0" Grid.Column="0" Content="Server Host:"/>
         <Label Grid.Row="1" Grid.Column="0" Content="Server Port:"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Username:"/>
-        <TextBox Text="localhost" Name="host" Grid.Column="1" Grid.Row="0" Margin="3" />
+        <TextBox Text="127.0.0.1" Name="host" Grid.Column="1" Grid.Row="0" Margin="3" />
         <TextBox Name="port" Text="4268" Grid.Column="1" Grid.Row="1" Margin="3" />
         <TextBox Name="username" Grid.Column="1" Grid.Row="2" Margin="3" />
         <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" MinWidth="80" Margin="3" Content="Connect" Click="ConnectionButton_OnClick" />

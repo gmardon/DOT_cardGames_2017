@@ -1,7 +1,7 @@
-﻿namespace Poker.Core.Players
-{
-    using Poker.Core.Cards;
+﻿using Poker.Core.Cards;
 
+namespace Poker.Core.Players
+{
     public class StartHandContext : IStartHandContext
     {
         public StartHandContext(Card firstCard, Card secondCard, int handNumber, int moneyLeft, int smallBlind, string firstPlayerName)

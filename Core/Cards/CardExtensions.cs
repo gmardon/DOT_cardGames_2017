@@ -1,7 +1,7 @@
-﻿namespace Poker.Core.Cards
-{
-    using System;
+﻿using System;
 
+namespace Poker.Core.Cards
+{
     public static class CardExtensions
     {
         public static string ToFriendlyString(this CardSuit cardSuit)

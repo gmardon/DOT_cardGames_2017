@@ -1,8 +1,8 @@
-﻿namespace Poker.Core.Players
-{
-    using System.Collections.Generic;
-    using Poker.Core.Cards;
+﻿using System.Collections.Generic;
+using Poker.Core.Cards;
 
+namespace Poker.Core.Players
+{
     public class EndHandContext : IEndHandContext
     {
         public EndHandContext(Dictionary<string, ICollection<Card>> showdownCards)

@@ -1,7 +1,7 @@
-﻿namespace Poker.Core.Players
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace Poker.Core.Players
+{
     public class GetTurnContext : IGetTurnContext
     {
         public GetTurnContext(

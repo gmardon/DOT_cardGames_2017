@@ -1,11 +1,10 @@
-﻿namespace Poker.Core.Helpers
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Poker.Core.Cards;
+
+namespace Poker.Core.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Poker.Core.Cards;
-
     public class BestHand : IComparable<BestHand>
     {
         internal BestHand(HandRankType rankType, ICollection<CardType> cards)

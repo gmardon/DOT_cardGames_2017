@@ -1,7 +1,7 @@
-﻿namespace Poker.Core.GameMechanics
-{
-    using Poker.Core.Players;
+﻿using Poker.Core.Players;
 
+namespace Poker.Core.GameMechanics
+{
     public interface ITexasHoldemGame
     {
         int HandsPlayed { get; }

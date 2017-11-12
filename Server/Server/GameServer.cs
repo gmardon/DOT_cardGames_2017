@@ -17,7 +17,7 @@ namespace Poker.Server
         {
             // Configure the server
             this.Configuration.Backlog = 100;
-            this.Configuration.Port = 8888;
+            this.Configuration.Port = 4268;
             this.Configuration.MaximumNumberOfConnections = 100;
             this.Configuration.Host = "127.0.0.1";
             this.clients = new List<GameClient>();

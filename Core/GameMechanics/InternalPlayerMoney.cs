@@ -1,9 +1,8 @@
-﻿namespace Poker.Core.GameMechanics
+﻿using System;
+using Poker.Core.Players;
+
+namespace Poker.Core.GameMechanics
 {
-    using System;
-
-    using Poker.Core.Players;
-
     public class InternalPlayerMoney
     {
         public InternalPlayerMoney(int startMoney)
