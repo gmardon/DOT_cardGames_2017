@@ -8,7 +8,6 @@ namespace Poker.Server
 {
     class GameClient : NetConnection
     {
-
         public void Send(ProtocolMessage message)
         {
             using (var packet = new NetPacket())
@@ -28,6 +27,7 @@ namespace Poker.Server
             {
                 case HelloConnectMessage.ID:
                     message = RawObjectReader.Load<HelloConnectMessage>(content);
+                    handleHelloConnectMessage((HelloConnectMessage) message);
                     break;
 
                 default:
@@ -36,5 +36,9 @@ namespace Poker.Server
             Console.WriteLine("Received '{1}' from {0}", this.Id, content);
         }
 
+        public void handleHelloConnectMessage(HelloConnectMessage message)
+        {
+            Console.WriteLine("User {0} just joined !", message.username);
+        }
     }
 }

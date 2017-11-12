@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Ether.Network;
 using Ether.Network.Packets;
 using Poker.Core.Cards;
+using Poker.Core.IO;
+using Poker.Core.Protocol;
 
 namespace Poker.Client
 {
@@ -27,14 +29,23 @@ namespace Poker.Client
         protected override void HandleMessage(NetPacketBase packet)
         {
             int id = packet.Read<int>();
-
-
             Console.WriteLine("-> Server response: {0}", id);
+        }
+
+        public void Send(ProtocolMessage message)
+        {
+            using (var packet = new NetPacket())
+            {
+                packet.Write(message.ID);
+                packet.Write(RawObjectWriter.Save(message));
+                this.Send(packet);
+            }
         }
 
         protected override void OnConnected()
         {
             onConnectedCallback?.Invoke();
+            Send(new HelloConnectMessage().Init(username));
             Console.WriteLine("Connected to {0}", this.Socket.RemoteEndPoint.ToString());
         }
 
