@@ -14,6 +14,7 @@ namespace Poker.Server.Server
         public GamePlayer(GameClient client, string username)
         {
             this.Client = client;
+            this.Name = username;
         }
 
         public override string Name { get; }

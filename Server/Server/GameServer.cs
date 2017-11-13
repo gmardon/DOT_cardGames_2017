@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using Poker.Core.GameMechanics;
 using Poker.Core.Protocol;
+using Poker.Server.Game;
 
 namespace Poker.Server
 {
@@ -32,7 +33,17 @@ namespace Poker.Server
         protected override void OnClientConnected(GameClient connection)
         {
             Console.WriteLine("New client connected!");
+            connection.broadcast = Broadcast;
+            connection.onReady = onClientReady;
             clients.Add(connection);
+        }
+
+        private void onClientReady()
+        {
+            if (clients.All(client => client.State == GameClient.GameClientState.Ready))
+            {
+                // BEGIN GAME !
+            }
         }
 
         protected override void OnClientDisconnected(GameClient connection)
@@ -46,43 +57,6 @@ namespace Poker.Server
             {
                 client.Send(message);
             }
-        }
-
-        private void Broadcast(ProtocolMessage message, GameClient sender)
-        {
-            foreach (GameClient client in clients)
-            {
-                if (client == sender)
-                    continue;
-                client.Send(message);
-            }
-        }
-
-        private void StartGame()
-        {
-            //ITexasHoldemGame game;
-
-            //create game
-
-            //GameThreadHandle handle = new GameThreadHandle(game);
-            //Thread GameThread = new Thread(new ThreadStart(handle.ThreadLoop));
-
-            
-        }
-    }
-
-    class GameThreadHandle
-    {
-        ITexasHoldemGame game;
-
-        public GameThreadHandle(ITexasHoldemGame game)
-        {
-            this.game = game;
-        }
-
-        public void ThreadLoop()
-        {
-            game.Start();
         }
     }
 }

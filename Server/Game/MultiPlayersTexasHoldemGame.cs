@@ -25,16 +25,11 @@ namespace Poker.Server.Game
 
         private readonly int initialMoney;
 
-        public MultiPlayersTexasHoldemGame(IPlayer firstPlayer, IPlayer secondPlayer, int initialMoney = 1000)
+        public MultiPlayersTexasHoldemGame(List<IPlayer> players, int initialMoney = 1000)
         {
-            if (firstPlayer == null)
+            if (players == null)
             {
                 throw new ArgumentNullException(nameof(firstPlayer));
-            }
-
-            if (secondPlayer == null)
-            {
-                throw new ArgumentNullException(nameof(secondPlayer));
             }
 
             if (initialMoney <= 0 || initialMoney > 200000)

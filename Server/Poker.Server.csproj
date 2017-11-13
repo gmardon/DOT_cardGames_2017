@@ -54,6 +54,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\GameClient.cs" />
+    <Compile Include="Server\GameClientState.cs" />
     <Compile Include="Server\GamePlayer.cs" />
     <Compile Include="Server\GamePlayerDecorator.cs" />
     <Compile Include="Server\GameServer.cs" />
