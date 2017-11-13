@@ -7,13 +7,14 @@ using System.Runtime.Serialization;
 
 namespace Poker.Core.Protocol
 {
-    class PlayerActionMessage : ProtocolMessage
+    [DataContract]
+    public class PlayerActionMessage : ProtocolMessage
     {
-        [DataMember] public new const int ID = 3;
+        public new const int ID = 3;
 
         [DataMember] private string action { get; }
 
-        public PlayerActionMessage(string action)
+        public PlayerActionMessage(string action) : base(ID)
         {
             this.action = action;
         }

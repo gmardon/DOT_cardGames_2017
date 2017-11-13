@@ -9,11 +9,15 @@ namespace Poker.Server
 {
     class GameClient : NetConnection
     {
+        public delegate void Broadcast(ProtocolMessage message, GameClient sender);
+
+        public Broadcast broadcast { set; get; }
+
         public void Send(ProtocolMessage message)
         {
             using (var packet = new NetPacket())
             {
-                packet.Write(message.ID);
+                packet.Write(message.id);
                 packet.Write(RawObjectWriter.Save(message));
                 this.Send(packet);
             }
@@ -30,6 +34,8 @@ namespace Poker.Server
                     message = RawObjectReader.Load<HelloConnectMessage>(content);
                     handleHelloConnectMessage((HelloConnectMessage) message);
                     break;
+                case ChatMessage.id:
+                    broadcast(message, this);
 
                 default:
                     throw new Exception("Message " + id + " is not implemented");

@@ -7,8 +7,12 @@ using System.Runtime.Serialization;
 
 namespace Poker.Core.Protocol
 {
-    class RequestPlayMessage : ProtocolMessage
+    [DataContract]
+    public class RequestPlayMessage : ProtocolMessage
     {
-        [DataMember] public new const int ID = 3;
+        public new const int ID = 3;
+
+        public RequestPlayMessage() : base(ID)
+        { }
     }
 }

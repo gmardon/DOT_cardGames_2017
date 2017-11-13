@@ -8,12 +8,13 @@ using System.Runtime.Serialization;
 namespace Poker.Core.Protocol
 {
     [DataContract]
-    class ChatMessage : ProtocolMessage
+    public class ChatMessage : ProtocolMessage
     {
-        [DataMember] public new const int ID = 2;
+        public new const int ID = 2;
+
         [DataMember] private string msg { get; }
 
-        public ChatMessage(string msg)
+        public ChatMessage(string msg) : base(ID)
         {
             this.msg = msg;
         }

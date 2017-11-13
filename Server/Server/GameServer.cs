@@ -12,6 +12,7 @@ namespace Poker.Server
     class GameServer : NetServer<GameClient>
     {
         List<GameClient> clients;
+        ITexasHoldemGame game;
 
         public GameServer()
         {
@@ -39,10 +40,20 @@ namespace Poker.Server
             Console.WriteLine("Client disconnected!");
         }
 
-        private void Broadcast(ProtocolMessage message)
+        public void Broadcast(ProtocolMessage message)
         {
             foreach (GameClient client in clients)
             {
+                client.Send(message);
+            }
+        }
+
+        private void Broadcast(ProtocolMessage message, GameClient sender)
+        {
+            foreach (GameClient client in clients)
+            {
+                if (client == sender)
+                    continue;
                 client.Send(message);
             }
         }
@@ -55,6 +66,7 @@ namespace Poker.Server
 
             //GameThreadHandle handle = new GameThreadHandle(game);
             //Thread GameThread = new Thread(new ThreadStart(handle.ThreadLoop));
+
             
         }
     }

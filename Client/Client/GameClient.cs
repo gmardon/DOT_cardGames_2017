@@ -36,7 +36,7 @@ namespace Poker.Client
         {
             using (var packet = new NetPacket())
             {
-                packet.Write(message.ID);
+                packet.Write(message.id);
                 packet.Write(RawObjectWriter.Save(message));
                 this.Send(packet);
             }
