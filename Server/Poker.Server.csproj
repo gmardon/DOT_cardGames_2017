@@ -46,9 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\InternalPlayer.cs" />
+    <Compile Include="Game\InternalPlayerMoney.cs" />
+    <Compile Include="Game\MultiPlayersTexasHoldemGame.cs" />
+    <Compile Include="Game\MultiPlayersHandLogic.cs" />
+    <Compile Include="Game\MultiPlayersBettingLogic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\GameClient.cs" />
+    <Compile Include="Server\GamePlayer.cs" />
+    <Compile Include="Server\GamePlayerDecorator.cs" />
     <Compile Include="Server\GameServer.cs" />
   </ItemGroup>
   <ItemGroup>

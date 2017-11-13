@@ -44,6 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\AlwaysAllInDummyPlayer.cs" />
+    <Compile Include="AI\AlwaysCallDummyPlayer.cs" />
+    <Compile Include="AI\AlwaysFoldDummyPlayer.cs" />
+    <Compile Include="AI\AlwaysRaiseDummyPlayer.cs" />
+    <Compile Include="AI\DummyPlayer.cs" />
+    <Compile Include="AI\Helpers\CardValuationType.cs" />
+    <Compile Include="AI\Helpers\HandStrengthValuation.cs" />
+    <Compile Include="AI\SmartPlayer.cs" />
     <Compile Include="Cards\Card.cs" />
     <Compile Include="Cards\CardExtensions.cs" />
     <Compile Include="Cards\CardSuit.cs" />
@@ -53,12 +61,7 @@
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\RandomProvider.cs" />
     <Compile Include="GameMechanics\IHandLogic.cs" />
-    <Compile Include="GameMechanics\InternalPlayer.cs" />
-    <Compile Include="GameMechanics\InternalPlayerMoney.cs" />
     <Compile Include="GameMechanics\ITexasHoldemGame.cs" />
-    <Compile Include="GameMechanics\TwoPlayersBettingLogic.cs" />
-    <Compile Include="GameMechanics\TwoPlayersHandLogic.cs" />
-    <Compile Include="GameMechanics\TwoPlayersTexasHoldemGame.cs" />
     <Compile Include="GameRoundType.cs" />
     <Compile Include="HandRankType.cs" />
     <Compile Include="Helpers\BestHand.cs" />

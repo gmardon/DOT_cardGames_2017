@@ -3,6 +3,7 @@ using Poker.Core.IO;
 using Poker.Core.Protocol;
 using Ether.Network;
 using Ether.Network.Packets;
+using Poker.Core.Players;
 
 namespace Poker.Server
 {
