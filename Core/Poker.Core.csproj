@@ -72,6 +72,7 @@
     <Compile Include="InternalGameException.cs" />
     <Compile Include="IO\RawObjectReader.cs" />
     <Compile Include="IO\RawObjectWriter.cs" />
+    <Compile Include="PlayerReadyMessage.cs" />
     <Compile Include="Players\BasePlayer.cs" />
     <Compile Include="Players\EndGameContext.cs" />
     <Compile Include="Players\EndHandContext.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Players\StartGameContext.cs" />
     <Compile Include="Players\StartHandContext.cs" />
     <Compile Include="Players\StartRoundContext.cs" />
+    <Compile Include="PlayerTurnBeginMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol\ChatMessage.cs" />
     <Compile Include="Protocol\PlayerActionMessage.cs" />
