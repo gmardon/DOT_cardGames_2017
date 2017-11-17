@@ -10,9 +10,9 @@ namespace Poker.Core.Protocol
     [DataContract]
     public class PlayerTurnBeginMessage : ProtocolMessage
     {
-        public new const int id = 5;
+        public new const int ID = 5;
 
-        public PlayerTurnBeginMessage() : base(id)
+        public PlayerTurnBeginMessage() : base(ID)
         { }
     }
 }
