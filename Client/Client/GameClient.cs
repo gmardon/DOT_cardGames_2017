@@ -14,19 +14,9 @@ namespace Poker.Client
         static void Main(string[] args)
         {
 
-            var client = new GameClient("127.0.0.1", 8888, 4096);
+            var client = new GameClient("10.19.254.244", 4268, 4096);
             client.Connect();
-
-            string username = null;
-            while (!client.Logged)
-            {
-                Console.WriteLine("Enter a username to log in");
-                username = Console.ReadLine();
-                client.Send(new HelloConnectMessage().Init(username));
-            }
-
-            client.Username = username;
-
+            
             while (true)
             {
                 string input = Console.ReadLine();
@@ -35,6 +25,9 @@ namespace Poker.Client
 
                 switch (input)
                 {
+                    case "/ready":
+                        client.Send(new PlayerReadyMessage().Init());
+                        break;
                     case "/check":
                         client.Send(new PlayerActionMessage().Init("check"));
                         break;
@@ -67,11 +60,7 @@ namespace Poker.Client
         int Money { set; get; }
         Card FirstCard { set; get; }
         Card SecondCard { set; get; }
-        public bool Logged { get; }
-
-        public delegate void onConnected();
-
-        private onConnected onConnectedCallback = null;
+        public bool Logged { get; set; }
 
         public GameClient(string host, int port, int bufferSize) : base(host, port, bufferSize)
         {
@@ -85,10 +74,9 @@ namespace Poker.Client
             Console.WriteLine("-> Server response: {0}", id);
             switch (id)
             {
-                case PlayerTurnBeginMessage.id:
+                case PlayerTurnBeginMessage.ID:
                     Console.WriteLine("It's your turn !");
                     break;
-                
             }
         }
 
@@ -104,9 +92,10 @@ namespace Poker.Client
 
         protected override void OnConnected()
         {
-            onConnectedCallback?.Invoke();
-            Send(new HelloConnectMessage().Init(Username));
-            Console.WriteLine("Connected to {0}", this.Socket.RemoteEndPoint.ToString());
+            string username = null;
+            Console.WriteLine("Enter a username to log in :");
+            username = Console.ReadLine();
+            Send(new HelloConnectMessage().Init(username));
         }
 
         protected override void OnDisconnected()
@@ -124,10 +113,6 @@ namespace Poker.Client
             this.FirstCard = firstCard;
             this.SecondCard = secondCard;
         }
-    
-        public void SetOnConnectedCallback(onConnected callback)
-        {
-            this.onConnectedCallback = callback;
-        }
+
     }
 }
