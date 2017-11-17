@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FA90986E-2163-4025-8C1D-6363637BEF28}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Poker.Core</RootNamespace>
+    <AssemblyName>Poker.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ether.Network, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ether.Network.2.0.1\lib\net45\Ether.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AI\AlwaysAllInDummyPlayer.cs" />
+    <Compile Include="AI\AlwaysCallDummyPlayer.cs" />
+    <Compile Include="AI\AlwaysFoldDummyPlayer.cs" />
+    <Compile Include="AI\AlwaysRaiseDummyPlayer.cs" />
+    <Compile Include="AI\DummyPlayer.cs" />
+    <Compile Include="AI\Helpers\CardValuationType.cs" />
+    <Compile Include="AI\Helpers\HandStrengthValuation.cs" />
+    <Compile Include="AI\SmartPlayer.cs" />
+    <Compile Include="Cards\Card.cs" />
+    <Compile Include="Cards\CardExtensions.cs" />
+    <Compile Include="Cards\CardSuit.cs" />
+    <Compile Include="Cards\CardType.cs" />
+    <Compile Include="Cards\Deck.cs" />
+    <Compile Include="Cards\IDeck.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\RandomProvider.cs" />
+    <Compile Include="GameMechanics\IHandLogic.cs" />
+    <Compile Include="GameMechanics\ITexasHoldemGame.cs" />
+    <Compile Include="GameRoundType.cs" />
+    <Compile Include="HandRankType.cs" />
+    <Compile Include="Helpers\BestHand.cs" />
+    <Compile Include="Helpers\HandEvaluator.cs" />
+    <Compile Include="Helpers\Helpers.cs" />
+    <Compile Include="Helpers\IHandEvaluator.cs" />
+    <Compile Include="IDeepCloneable{T}.cs" />
+    <Compile Include="InternalGameException.cs" />
+    <Compile Include="IO\RawObjectReader.cs" />
+    <Compile Include="IO\RawObjectWriter.cs" />
+    <Compile Include="Players\BasePlayer.cs" />
+    <Compile Include="Players\EndGameContext.cs" />
+    <Compile Include="Players\EndHandContext.cs" />
+    <Compile Include="Players\EndRoundContext.cs" />
+    <Compile Include="Players\GetTurnContext.cs" />
+    <Compile Include="Players\IEndGameContext.cs" />
+    <Compile Include="Players\IEndHandContext.cs" />
+    <Compile Include="Players\IEndRoundContext.cs" />
+    <Compile Include="Players\IGetTurnContext.cs" />
+    <Compile Include="Players\IPlayer.cs" />
+    <Compile Include="Players\IStartGameContext.cs" />
+    <Compile Include="Players\IStartHandContext.cs" />
+    <Compile Include="Players\IStartRoundContext.cs" />
+    <Compile Include="Players\PlayerAction.cs" />
+    <Compile Include="Players\PlayerActionAndName.cs" />
+    <Compile Include="Players\PlayerActionType.cs" />
+    <Compile Include="Players\PlayerDecorator.cs" />
+    <Compile Include="Players\StartGameContext.cs" />
+    <Compile Include="Players\StartHandContext.cs" />
+    <Compile Include="Players\StartRoundContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocol\ChatMessage.cs" />
+    <Compile Include="Protocol\PlayersListMessage.cs" />
+    <Compile Include="Protocol\PlayerActionMessage.cs" />
+    <Compile Include="Protocol\PlayerReadyMessage.cs" />
+    <Compile Include="Protocol\HelloConnectMessage.cs" />
+    <Compile Include="Protocol\PlayersListRequestMessage.cs" />
+    <Compile Include="Protocol\ProtocolMessage.cs" />
+    <Compile Include="Protocol\PlayerTurnBeginMessage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
