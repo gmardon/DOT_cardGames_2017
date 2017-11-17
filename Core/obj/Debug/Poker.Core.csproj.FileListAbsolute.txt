@@ -1,2 +1,0 @@
-D:\DOT_cardGames_2017\Core\obj\Debug\Poker.Core.csproj.CoreCompileInputs.cache
-D:\DOT_cardGames_2017\Core\obj\Debug\Poker.Core.csprojResolveAssemblyReference.cache
