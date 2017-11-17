@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Poker.Core.IO;
 using Poker.Core.Protocol;
 using Ether.Network;
@@ -14,10 +15,12 @@ namespace Poker.Server
         public delegate void Broadcast(ProtocolMessage message);
         public delegate void OnReady();
 
+        public GameServer Server;
+
         public Broadcast broadcast { set; get; }
         public OnReady onReady { set; get; }
 
-        private GamePlayer Player { set; get; }
+        public GamePlayer Player { private set; get; }
 
         public GameClientState State { set; get; }
 
@@ -52,12 +55,22 @@ namespace Poker.Server
                     handlePlayerReadyMessage((PlayerReadyMessage)message);
                     break;
                 case ChatMessage.ID:
+                    message = RawObjectReader.Load<ChatMessage>(content);
                     broadcast(message);
+                    break;
+                case PlayersListRequestMessage.ID:
+                    message = RawObjectReader.Load<PlayersListRequestMessage>(content);
+                    handlePlayersListRequestMessage((PlayersListRequestMessage)message);
                     break;
                 default:
                     throw new Exception("Message " + id + " is not implemented");
             }
             Console.WriteLine("Received '{1}' from {0}", this.Id, content);
+        }
+
+        private void handlePlayersListRequestMessage(PlayersListRequestMessage message)
+        {
+            Send(new PlayersListMessage().Init(Server.BasePlayers));
         }
 
         public void handleHelloConnectMessage(HelloConnectMessage message)

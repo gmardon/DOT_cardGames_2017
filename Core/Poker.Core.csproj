@@ -94,9 +94,11 @@
     <Compile Include="Players\StartRoundContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol\ChatMessage.cs" />
+    <Compile Include="Protocol\PlayersListMessage.cs" />
     <Compile Include="Protocol\PlayerActionMessage.cs" />
     <Compile Include="Protocol\PlayerReadyMessage.cs" />
     <Compile Include="Protocol\HelloConnectMessage.cs" />
+    <Compile Include="Protocol\PlayersListRequestMessage.cs" />
     <Compile Include="Protocol\ProtocolMessage.cs" />
     <Compile Include="Protocol\PlayerTurnBeginMessage.cs" />
   </ItemGroup>
