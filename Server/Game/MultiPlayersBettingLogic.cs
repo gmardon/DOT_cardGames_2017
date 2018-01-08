@@ -47,7 +47,6 @@ namespace Poker.Server.Game
                 {
                     continue;
                 }
-
                 var maxMoneyPerPlayer = this.allPlayers.Max(x => x.PlayerMoney.CurrentRoundBet);
                 var action =
                     player.GetTurn(

@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using Poker.Core.GameMechanics;
 using Poker.Core.Players;
 using Poker.Core.Protocol;
@@ -12,11 +10,11 @@ using Poker.Server.Server;
 
 namespace Poker.Server
 {
-    class GameServer : NetServer<GameClient>
+    public class GameServer : NetServer<GameClient>
     {
         public List<GameClient> Clients { get; }
 
-        public List<BasePlayer> BasePlayers => new List<BasePlayer>(from client in Clients select client.Player);
+        public List<IPlayer> Players;
 
         ITexasHoldemGame Game;
 
@@ -24,7 +22,7 @@ namespace Poker.Server
         {
             // Configure the server
             this.Configuration.Backlog = 100;
-            this.Configuration.Port = 4268;
+            this.Configuration.Port = 8888;
             this.Configuration.MaximumNumberOfConnections = 100;
             this.Configuration.Host = "127.0.0.1";
             this.Clients = new List<GameClient>();
@@ -48,13 +46,20 @@ namespace Poker.Server
         {
             if (Clients.All(client => client.State == GameClient.GameClientState.Ready))
             {
-                // BEGIN GAME !
+                Players = new List<IPlayer>();
+                foreach (GameClient client in Clients)
+                {
+                    Players.Add(new GamePlayerDecorator(client.Player, client, this));
+                }
+                MultiPlayersTexasHoldemGame game = new MultiPlayersTexasHoldemGame(Players);
+                game.Start();
             }
         }
 
         protected override void OnClientDisconnected(GameClient connection)
         {
             Console.WriteLine("Client disconnected!");
+            Clients.Remove(connection);
         }
 
         public void Broadcast(ProtocolMessage message)
@@ -62,6 +67,15 @@ namespace Poker.Server
             foreach (GameClient client in Clients)
             {
                 client.Send(message);
+            }
+        }
+
+        public void BroadcastExcept(ProtocolMessage message, GameClient client)
+        {
+            foreach (GameClient it in Clients)
+            {
+                if (it != client)
+                    it.Send(message);
             }
         }
     }

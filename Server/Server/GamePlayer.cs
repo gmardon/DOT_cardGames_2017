@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Poker.Core.Players;
+﻿using Poker.Core.Players;
+using Poker.Core.Protocol;
+using System.Threading;
+using System;
 
 namespace Poker.Server.Server
 {
-    class GamePlayer : BasePlayer
+    public class GamePlayer : BasePlayer
     {
-        private GameClient Client;
+        public GameClient Client;
 
         public GamePlayer(GameClient client, string username)
         {
@@ -20,7 +18,27 @@ namespace Poker.Server.Server
         public override string Name { get; }
         public override PlayerAction GetTurn(IGetTurnContext context)
         {
-            throw new NotImplementedException();
+            Client.Send(new PlayerTurnBeginMessage());
+            while (true)
+            {
+                var playerAction = Client.playerAction;
+                Client.playerAction = null;
+                switch (playerAction)
+                {
+                    case "check":
+                        return PlayerAction.CheckOrCall();
+                    case "raise":
+                        return PlayerAction.Raise(10);
+                    case "fold":
+                        return PlayerAction.Fold();
+                    case "allin":
+                        return context.MoneyLeft > 0
+                                         ? PlayerAction.Raise(context.MoneyLeft)
+                                         : PlayerAction.CheckOrCall();
+                    default:
+                        continue;
+                }
+            }
         }
     }
 }

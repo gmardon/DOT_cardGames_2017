@@ -12,13 +12,15 @@ namespace Poker.Core.Protocol
     {
         public new const int ID = 2;
 
+        [DataMember] private string user { get; set; }
         [DataMember] private string msg { get; set; }
 
         public ChatMessage() : base(ID)
         {}
 
-        public ChatMessage Init(string msg)
+        public ChatMessage Init(string user, string msg)
         {
+            this.user = user;
             this.msg = msg;
             return this;
         }

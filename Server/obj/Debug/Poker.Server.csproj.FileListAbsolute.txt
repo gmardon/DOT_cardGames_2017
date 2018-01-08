@@ -1,0 +1,11 @@
+D:\DOT_cardGames_2017\Server\bin\Debug\Poker.Server.exe.config
+D:\DOT_cardGames_2017\Server\bin\Debug\Poker.Server.exe
+D:\DOT_cardGames_2017\Server\bin\Debug\Poker.Server.pdb
+D:\DOT_cardGames_2017\Server\bin\Debug\Ether.Network.dll
+D:\DOT_cardGames_2017\Server\bin\Debug\Poker.Core.dll
+D:\DOT_cardGames_2017\Server\bin\Debug\Poker.Core.pdb
+D:\DOT_cardGames_2017\Server\bin\Debug\Ether.Network.xml
+D:\DOT_cardGames_2017\Server\obj\Debug\Poker.Server.csprojResolveAssemblyReference.cache
+D:\DOT_cardGames_2017\Server\obj\Debug\Poker.Server.csproj.CoreCompileInputs.cache
+D:\DOT_cardGames_2017\Server\obj\Debug\Poker.Server.exe
+D:\DOT_cardGames_2017\Server\obj\Debug\Poker.Server.pdb

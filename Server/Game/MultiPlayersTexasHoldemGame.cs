@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Poker.Core.GameMechanics;
 using Poker.Core.Players;
+using Poker.Core.Protocol;
 
 namespace Poker.Server.Game
 {
@@ -17,10 +18,6 @@ namespace Poker.Server.Game
                 10000, 15000, 20000, 30000, 40000, 50000, 60000, 80000, 100000
             };
 
-        private readonly InternalPlayer firstPlayer;
-
-        private readonly InternalPlayer secondPlayer;
-
         private readonly ICollection<InternalPlayer> allPlayers;
 
         private readonly int initialMoney;
@@ -29,7 +26,7 @@ namespace Poker.Server.Game
         {
             if (players == null)
             {
-                throw new ArgumentNullException(nameof(firstPlayer));
+                throw new ArgumentNullException(nameof(players));
             }
 
             if (initialMoney <= 0 || initialMoney > 200000)
@@ -37,15 +34,13 @@ namespace Poker.Server.Game
                 throw new ArgumentOutOfRangeException(nameof(initialMoney), "Initial money should be greater than 0 and less than 200000");
             }
 
-            // Ensure the players have unique names
-            if (firstPlayer.Name == secondPlayer.Name)
+            this.allPlayers = new List<InternalPlayer>();
+
+            foreach (IPlayer player in players)
             {
-                throw new ArgumentException($"Both players have the same name: \"{firstPlayer.Name}\"");
+                allPlayers.Add(new InternalPlayer(player));
             }
 
-            this.firstPlayer = new InternalPlayer(firstPlayer);
-            this.secondPlayer = new InternalPlayer(secondPlayer);
-            this.allPlayers = new List<InternalPlayer> { this.firstPlayer, this.secondPlayer };
             this.initialMoney = initialMoney;
             this.HandsPlayed = 0;
         }
@@ -69,9 +64,16 @@ namespace Poker.Server.Game
                 var smallBlind = SmallBlinds[(this.HandsPlayed - 1) / 10];
 
                 // Rotate players
-                IHandLogic hand = this.HandsPlayed % 2 == 1
-                               ? new MultiPlayersHandLogic(new[] { this.firstPlayer, this.secondPlayer }, this.HandsPlayed, smallBlind)
-                               : new MultiPlayersHandLogic(new[] { this.secondPlayer, this.firstPlayer }, this.HandsPlayed, smallBlind);
+                int offset = this.HandsPlayed % allPlayers.Count();
+
+                var tmp = allPlayers.ToArray();
+                var players = new List<InternalPlayer>();
+                for (int ctr = 0; ctr < allPlayers.Count(); ctr++)
+                {
+                    players.Add(tmp[(ctr + offset) % allPlayers.Count()]);
+                }
+
+                IHandLogic hand = new MultiPlayersHandLogic(players, this.HandsPlayed, smallBlind);
 
                 hand.Play();
             }

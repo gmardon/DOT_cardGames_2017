@@ -14,9 +14,12 @@ namespace Poker.Client
         static void Main(string[] args)
         {
 
-            var client = new GameClient("10.19.254.244", 4268, 4096);
+            var client = new GameClient("127.0.0.1", 8888, 4096);
             client.Connect();
-            
+
+
+            if (!client.ready)
+                Thread.Sleep(1);
             while (true)
             {
                 string input = Console.ReadLine();
@@ -44,7 +47,7 @@ namespace Poker.Client
                         Console.WriteLine();
                         break;
                     default:
-                        client.Send(new ChatMessage().Init(input));
+                        client.Send(new ChatMessage().Init(client.Username, input));
                         break;
                 }
             }
@@ -60,12 +63,12 @@ namespace Poker.Client
         int Money { set; get; }
         Card FirstCard { set; get; }
         Card SecondCard { set; get; }
-        public bool Logged { get; set; }
+        public bool ready { get; set; }
 
         public GameClient(string host, int port, int bufferSize) : base(host, port, bufferSize)
         {
             Players = new List<string>();
-            Logged = false;
+            ready = false;
         }
 
         protected override void HandleMessage(NetPacketBase packet)
@@ -76,6 +79,15 @@ namespace Poker.Client
             {
                 case PlayerTurnBeginMessage.ID:
                     Console.WriteLine("It's your turn !");
+                    break;
+                case ChatMessage.ID:
+                    Console.WriteLine(packet.Read<string>());
+                    break;
+                case PlayerCardsMessage.ID:
+                    Console.WriteLine(packet.Read<string>());
+                    break;
+                case UpdatePotMessage.ID:
+                    Console.WriteLine("Pot is : {0}", packet.Read<int>());
                     break;
             }
         }
@@ -95,6 +107,7 @@ namespace Poker.Client
             string username = null;
             Console.WriteLine("Enter a username to log in :");
             username = Console.ReadLine();
+            ready = true;
             Send(new HelloConnectMessage().Init(username));
         }
 

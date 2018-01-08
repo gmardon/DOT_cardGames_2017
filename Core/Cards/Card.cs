@@ -1,8 +1,11 @@
-﻿namespace Poker.Core.Cards
+﻿using System.Runtime.Serialization;
+
+namespace Poker.Core.Cards
 {
     /// <summary>
     /// Immutable object to represent game card with suit and type.
     /// </summary>
+    [DataContractAttribute]
     public class Card : IDeepCloneable<Card>
     {
         public Card(CardSuit suit, CardType type)
@@ -11,9 +14,11 @@
             this.Type = type;
         }
 
-        public CardSuit Suit { get; }
+        [DataMemberAttribute]
+        public CardSuit Suit { set;  get; }
 
-        public CardType Type { get; }
+        [DataMemberAttribute]
+        public CardType Type { set;  get; }
 
         public static Card FromHashCode(int hashCode)
         {

@@ -12,7 +12,7 @@ namespace Poker.Core.Protocol
     {
         public new const int ID = 3;
 
-        [DataMember] private string action { set; get; }
+        [DataMember] public string action { set; get; }
 
         public PlayerActionMessage() : base(ID)
         {}

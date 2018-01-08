@@ -9,12 +9,14 @@ using Poker.Server.Server;
 
 namespace Poker.Server
 {
-    class GameClient : NetConnection
+    public class GameClient : NetConnection
     {
         public enum GameClientState { Undefined, Connected, Ready };
         public delegate void Broadcast(ProtocolMessage message);
         public delegate void OnReady();
 
+        public string playerAction { get; set; } = null;
+        
         public GameServer Server;
 
         public Broadcast broadcast { set; get; }
@@ -54,13 +56,13 @@ namespace Poker.Server
                     message = RawObjectReader.Load<PlayerReadyMessage>(content);
                     handlePlayerReadyMessage((PlayerReadyMessage)message);
                     break;
+                case PlayerActionMessage.ID:
+                    message = RawObjectReader.Load<PlayerActionMessage>(content);
+                    handlePlayerActionMessage((PlayerActionMessage)message);
+                    break;
                 case ChatMessage.ID:
                     message = RawObjectReader.Load<ChatMessage>(content);
-                    broadcast(message);
-                    break;
-                case PlayersListRequestMessage.ID:
-                    message = RawObjectReader.Load<PlayersListRequestMessage>(content);
-                    handlePlayersListRequestMessage((PlayersListRequestMessage)message);
+                    handleChatMessage((ChatMessage)message);
                     break;
                 default:
                     throw new Exception("Message " + id + " is not implemented");
@@ -68,9 +70,14 @@ namespace Poker.Server
             Console.WriteLine("Received '{1}' from {0}", this.Id, content);
         }
 
+        private void handleChatMessage(ChatMessage message)
+        {
+            broadcast(message);
+        }
+
         private void handlePlayersListRequestMessage(PlayersListRequestMessage message)
         {
-            Send(new PlayersListMessage().Init(Server.BasePlayers));
+            Send(new PlayersListMessage().Init(Server.Players));
         }
 
         public void handleHelloConnectMessage(HelloConnectMessage message)
@@ -83,6 +90,12 @@ namespace Poker.Server
         {
             this.State = GameClientState.Ready;
             onReady();
+        }
+
+        public void handlePlayerActionMessage(PlayerActionMessage message)
+        {
+            playerAction = message.action;
+            Console.WriteLine(playerAction);
         }
     }
 }
